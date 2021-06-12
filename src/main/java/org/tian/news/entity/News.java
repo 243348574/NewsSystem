@@ -26,9 +26,6 @@ public class News {
     @TableField("n_category_id")
     private Integer nCategoryId;
 
-    @TableField(exist = false)
-    private String nCategoryName;
-
     @TableField("n_status")
     private Integer nStatus;
 

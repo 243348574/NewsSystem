@@ -13,7 +13,15 @@ import java.util.Map;
 @Configuration
 @ConfigurationProperties(prefix = "spider")
 public class NewsSpiderConfig {
+    /**
+     * 新闻列表信息
+     * ===  新闻类别 新闻类别id 新闻类别名称
+     * ===  https://www.chinanews.com/china.shtml 1 时政 ===
+     */
     private List<String> urlObjList;
 
+    /**
+     * 抓取新闻项目 需要baseUrl拼接
+     */
     private String baseUrl;
 }

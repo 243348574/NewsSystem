@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.tian.news.config.NewsSpiderConfig;
+import org.tian.news.entity.News;
 import org.tian.news.entity.NewsTmp;
+import org.tian.news.sevice.NewsService;
 import org.tian.news.sevice.NewsTmpService;
 import org.tian.news.sevice.SpiderService;
 
@@ -16,6 +18,9 @@ class NewsSystemApplicationTests {
 
     @Autowired
     private NewsTmpService newsTmpService;
+
+    @Autowired
+    private NewsService newsService;
 
     @Autowired
     private SpiderService spiderService;
@@ -34,7 +39,9 @@ class NewsSystemApplicationTests {
             List<NewsTmp> newsTmps = spiderService.getNewsTmpByUrl(url, baseUrl);
             for (NewsTmp newsTmp : newsTmps) {
                 newsTmp.setNCategoryId(cid);
+                newsTmpService.save(newsTmp);
             }
+
         }
     }
 

@@ -66,7 +66,6 @@ public class NewsManageController {
         }
         IPage<NewsTmp> page = new Page<>(current, pageSize);
         newsTmpService.page(page, queryWrapper);
-        categoryService.fillCname(page.getRecords());
         return page;
     }
 

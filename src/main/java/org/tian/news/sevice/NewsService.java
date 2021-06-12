@@ -1,11 +1,15 @@
 package org.tian.news.sevice;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tian.news.entity.Category;
 import org.tian.news.entity.News;
 import org.tian.news.mapper.NewsMapper;
+import org.tian.news.vo.NewsPageVO;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,27 +18,17 @@ import java.util.Map;
 @Service
 public class NewsService extends ServiceImpl<NewsMapper, News> {
 
-    @Autowired
-    private CategoryService categoryService;
-
-    @Override
-    public List<News> list() {
-        List<News> newsList = super.list();
-        List<Category> categoryList = categoryService.list();
-
-        // 构造类别map
-        Map<Integer, String> cMap = new HashMap<>();
-        for (Category category : categoryList) {
-            cMap.put(category.getCId(), category.getCName());
-        }
-
-        for (News news : newsList) {
-            news.setNCategoryName(cMap.get(news.getNCategoryId()));
-        }
-        return newsList;
+    /**
+     * 获取新闻列表分页
+     * @param pageVO
+     * @return
+     */
+    public IPage<News> getListPage(NewsPageVO pageVO) {
+        QueryWrapper<News> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("n_id", "n_title", "n_create_time")
+                .eq("n_status", 1)
+                .eq("n_category_id", pageVO.getCategory());
+        IPage<News> newsIPage = new Page<>(pageVO.getCurrent(), pageVO.getLimit());
+        return super.page(newsIPage, queryWrapper);
     }
-
-
-
-
 }

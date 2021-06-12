@@ -2,22 +2,22 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    username: root
-    password: 123456
-    url: jdbc:mysql://localhost:3306/newsv2?useSSL=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: news_api
+    password: JGzazbNYDXNFSCJB
+    url: jdbc:mysql://localhost:3306/news_api?useSSL=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
 
 spider:
   # space 后为网址对应新闻类别 id
   url-obj-list:
-    - http://www.chinanews.com/china.shtml 1
-    - http://www.chinanews.com/world.shtml 2
-    - http://www.chinanews.com/cj/gd.shtml 3
-    - http://www.chinanews.com/business/gd.shtml 4
-    - http://www.chinanews.com/society.shtml 5
-    - http://www.chinanews.com/compatriot.shtml 6
-    - http://www.chinanews.com/taiwan.shtml 7
-    - http://www.chinanews.com/huaren.shtml 8
-    - http://www.chinanews.com/entertainment.shtml 9
-    - http://www.chinanews.com/ty/gun-news.html 10
-    - http://www.chinanews.com/wenhua.shtml 11
-  base-url: http://www.chinanews.com
+    - https://www.chinanews.com/china.shtml 1 时政
+    - https://www.chinanews.com/world.shtml 2 国际
+    - https://www.chinanews.com/cj/gd.shtml 3 财经
+    - https://www.chinanews.com/business/gd.shtml 4 产经
+    - https://www.chinanews.com/society.shtml 5 社会
+    - https://www.chinanews.com/compatriot.shtml 6 港澳
+    - https://www.chinanews.com/taiwan.shtml 7 台湾
+    - https://www.chinanews.com/huaren.shtml 8 华人
+    - https://www.chinanews.com/entertainment.shtml 9 娱乐
+    - https://www.chinanews.com/ty/gun-news.html 10 体育
+    - https://www.chinanews.com/wenhua.shtml 11 文化
+  base-url: https://www.chinanews.com
